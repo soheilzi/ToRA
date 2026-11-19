@@ -113,3 +113,8 @@ load a checkpoint into it.
   year    = {2026}
 }
 ```
+
+## License
+
+The code is released under the [MIT License](LICENSE). The datasets and models it downloads keep their own licenses
+and terms of use.
