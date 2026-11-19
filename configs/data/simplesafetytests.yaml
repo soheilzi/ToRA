@@ -1,0 +1,5 @@
+# WildGuard suite (allenai/safety-eval simplesafetytests): 100 prompts, all harmful.
+name: simplesafetytests
+loader: simplesafetytests
+repo_id: Bertievidgen/SimpleSafetyTests
+splits: {test: test}

@@ -1,0 +1,16 @@
+# Greedy generator answers to every prompt benchmark, for SingProbe's query protocol (src/tora/eval/generate.py):
+# its prompt score averages over the positions of the generator's answer. Splits a dataset lacks are skipped.
+#   CUDA_VISIBLE_DEVICES=0 python -m tora.eval.generate
+run:
+  name: generate
+  phase: eval
+  seed: 0
+
+gen:
+  datasets: [wildguard, aegis2, toxicchat, openai_mod, aegis1, simplesafetytests, harmbench_prompt, xstest_prompt, expguard]
+  splits: [test, val]
+  model_repo: Qwen/Qwen3-0.6B
+  tag: qwen3-0.6b_greedy_512
+  max_new_tokens: 512
+  max_len: 2048
+  batch_size: 64

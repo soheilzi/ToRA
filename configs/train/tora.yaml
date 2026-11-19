@@ -1,0 +1,50 @@
+# ToRA as in the paper: the frozen Qwen3-0.6B generator, FFN-LoRA (gate, up, down) on its top K = 14 layers with rank 8
+# and alpha 16, an MLP head, the shared KV cache, and per-token labels at N = 128 earlier response positions from the
+# teacher's unsafe onsets (scripts/teacher_onsets.py first).
+#   CUDA_VISIBLE_DEVICES=0 bash scripts/train.sh tora SEED      (the paper's runs and ablations: scripts/train.sh)
+defaults:
+  model: model/qwen3_0p6b.yaml
+
+run:
+  name: tora
+  phase: train
+  seed: 0
+
+train:
+  train_datasets: [wildguard, aegis2, beavertails, saferlhf, toxicchat, aegis1, expguard]
+  eval_datasets: [wildguard, aegis2, beavertails, saferlhf, harmbench_response, think, xstest_response, expguard, toxicchat,
+                  openai_mod, aegis1, simplesafetytests, harmbench_prompt, xstest_prompt]
+  subsets: {wildguard: adversarial}
+  epochs: 2
+  batch_tokens: 32768
+  micro_batch_tokens: 16384  # gradient accumulation: N = 128 at the full batch needs more than 48 GB
+  eval_batch_tokens: 32768
+  pool_size: 8192
+  warmup_frac: 0.03
+  grad_clip: 1.0
+  evals_per_epoch: 2       # 4 candidate checkpoints; the best mean val AUPRC is kept
+  train_fraction: 1.0
+  dedupe_prompts: true
+  max_len: 2048
+  prefix_positions: 128    # N
+  prefix_teacher: data_cache/teacher/qwen3guard_stream_0p6b.shard*.jsonl
+  base:
+    lr: 1.0e-3             # LoRA
+    head_lr: 1.0e-3
+    weight_decay: 0.0
+    prefix_labels: teacher
+    prefix_weight: 1.0
+    verifier:
+      k_layers: 14         # K
+      rank: 8
+      alpha: null          # -> 2 * rank = 16
+      kv: shared
+      sink: 0
+      head:
+        kind: mlp
+        hidden_dim: 1024
+        dropout: 0.1
+        taps: [final]
+        norm: none
+  variants:
+    tora: {}

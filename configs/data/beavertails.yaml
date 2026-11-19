@@ -1,0 +1,8 @@
+# BeaverTails splits by QA pair, so almost every test prompt also appears in train (2517 of 2525 unique 30k_test
+# prompts are in 30k_train). The S6b dedupe removes those prompts from train. 30k_test (3021 pairs) is the split guard
+# papers report on.
+name: beavertails
+loader: beavertails
+repo_id: PKU-Alignment/BeaverTails
+splits: {30k_train: train, 30k_test: test}
+val_fraction: 0.05              # held out from train by unique prompt, stratified by labels

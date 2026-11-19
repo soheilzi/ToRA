@@ -1,0 +1,5 @@
+name: aegis2
+loader: aegis2
+repo_id: nvidia/Aegis-AI-Content-Safety-Dataset-2.0
+splits: {train: train, validation: val, test: test}
+keep_redacted: false           # 'REDACTED' prompts have no text in the dataset

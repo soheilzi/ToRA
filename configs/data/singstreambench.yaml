@@ -1,0 +1,5 @@
+# Streaming benchmark from the SingProbe report: 210 responses (122 unsafe), character-level unsafe onset.
+name: singstreambench
+loader: singstreambench
+repo_id: inclusionAI/SingStreamBench
+splits: {SingStreamBench: test}

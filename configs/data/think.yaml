@@ -1,0 +1,6 @@
+# Qwen3Guard's "Think" response benchmark: Qwen3GuardTest `thinking` (1,059 reasoning traces + answers to BeaverTails
+# test prompts, 569 unsafe). Rendered in thinking mode (formatting.py); unsafe items are checked against its input_ids.
+name: think
+loader: think
+repo_id: Qwen/Qwen3GuardTest
+splits: {thinking: test}

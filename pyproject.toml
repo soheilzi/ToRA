@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tora"
+version = "1.0.0"
+description = "ToRA (Tandem of low-Rank Adapters): a streaming safety verifier that shares the generator's weights and KV cache"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "torch>=2.5",
+    "triton>=3.5",
+    "transformers>=4.51",
+    "datasets",
+    "safetensors",
+    "huggingface_hub",
+    "pyyaml",
+    "numpy",
+    "scikit-learn",
+    "nvidia-ml-py",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+wandb = ["wandb"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+markers = [
+    "gpu: needs a CUDA GPU; run with CUDA_VISIBLE_DEVICES set (select with `-m gpu`)",
+    "slow: takes more than ~30 s (deselect with `-m 'not slow'`)",
+]

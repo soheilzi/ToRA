@@ -1,0 +1,7 @@
+# WildGuard suite (allenai/safety-eval aegis_safety_dataset): Aegis 1.0 user messages, majority of 3 annotators. The
+# train split gets the same rule (user messages only: the test set has no responses).
+name: aegis1
+loader: aegis1
+repo_id: nvidia/Aegis-AI-Content-Safety-Dataset-1.0
+splits: {train: train, test: test}
+val_fraction: 0.05              # held out from train by unique prompt, stratified by labels

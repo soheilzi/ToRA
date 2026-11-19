@@ -1,0 +1,6 @@
+# ExpGuard's safety-eval fork (xstest_prompt_harm): the original XSTest, 250 safe + 200 unsafe prompts.
+name: xstest_prompt
+loader: xstest_prompt
+repo_id: Paul/XSTest
+revision: f600c994b256f12867dfa5b3eb3d545a3e62f8b5
+splits: {test: test}

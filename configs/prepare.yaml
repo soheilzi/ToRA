@@ -1,0 +1,19 @@
+# Download every dataset, hold out 5% of each training set (by prompt) for validation, remove training prompts that
+# occur in any test or validation split, run the data checks S6a-S6d, and write data_cache/processed/<dataset>/<split>.jsonl.
+#   python -m tora.data.prepare          (CPU only)
+defaults:
+  model: model/qwen3_0p6b.yaml   # tokenizer / chat template
+
+run:
+  name: prepare
+  phase: data
+  seed: 0
+
+prepare:
+  # the seven training sources, then the evaluation-only sets
+  datasets: [wildguard, aegis2, beavertails, saferlhf, toxicchat, aegis1, expguard, qwen3guardtest, singstreambench, think,
+             harmbench_response, harmbench_prompt, openai_mod, simplesafetytests, xstest_response, xstest_prompt]
+  max_len: 2048
+  n_label_checks: 100
+  n_print: 5
+  drop_train_in_val: true

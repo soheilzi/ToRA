@@ -1,0 +1,20 @@
+# Every benchmark scored through the deployed decode step (compiled, CUDA-graph-captured fused dual-row step;
+# scripts/deployed_eval.py fills eval.methods with fused:NAME=PATH): the 8 response / 9 prompt test sets of the F1
+# tables (scripts/f1_table.py TESTS) and the two streaming sets, with configs/eval/stream.yaml's streaming settings.
+# The script scores only the WildGuard + Aegis 2.0 val splits (f1_table's thresholds and the streaming calibration);
+# run_eval on this config would score every dataset's val split.
+run:
+  name: deployed
+  phase: eval
+  seed: 0
+
+eval:
+  methods: []
+  datasets: [wildguard, aegis2, beavertails, saferlhf, harmbench_response, think, xstest_response, expguard, toxicchat,
+             openai_mod, aegis1, simplesafetytests, harmbench_prompt, xstest_prompt, qwen3guardtest, singstreambench]
+  tokenizer_repo: Qwen/Qwen3-0.6B
+  max_len: 2048
+  batch_tokens: 32768
+  stream_target_fprs: [0.05, 0.01]
+  stream_calibration: [wildguard, aegis2]
+  stream_fpr_eval: [beavertails]

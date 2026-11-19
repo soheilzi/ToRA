@@ -1,0 +1,6 @@
+# WildGuard suite (allenai/safety-eval xstest_response_harm): XSTest prompts with model responses, 446 response labels.
+name: xstest_response
+loader: xstest_response
+repo_id: allenai/xstest-response
+revision: 4cd03695944eb5940c5a2dfcdf2a493a8f288dbc
+splits: {test: test}

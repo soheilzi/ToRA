@@ -1,0 +1,5 @@
+name: wildguard
+loader: wildguardmix
+repo_id: allenai/wildguardmix   # gated: accept the terms on the dataset page with the HF_TOKEN account
+splits: {wildguardtrain: train, wildguardtest: test}
+val_fraction: 0.05              # held out from train by unique prompt, stratified by labels

@@ -1,0 +1,21 @@
+# conda env create -f environment.yml && conda activate tora && pip install -e ".[dev]"
+# The versions of the paper's runs (one RTX A6000, driver 535 / CUDA 12.2; the cu126 torch wheels and Triton 3.5.1).
+name: tora
+channels:
+  - defaults
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      - --extra-index-url https://download.pytorch.org/whl/cu126
+      - torch==2.9.1+cu126
+      - triton==3.5.1
+      - transformers==5.21.0
+      - datasets==5.1.0
+      - huggingface_hub==2.3.0
+      - safetensors==0.8.0
+      - numpy==2.4.6
+      - scikit-learn==1.9.1
+      - nvidia-ml-py==13.615.71
+      - pyyaml==6.0.3
+      - pytest==9.1.1

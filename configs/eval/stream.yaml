@@ -1,0 +1,18 @@
+# Streaming eval, teacher-forced (scripts/stream_eval.sh fills eval.methods): Qwen3GuardTest response_loc (813 unsafe
+# responses with the first unsafe sentence's token span) and SingStreamBench. Thresholds: at most 5% / 1% of the safe
+# WildGuard + Aegis 2.0 val responses flagged (any token at or above it); that FPR re-measured on the safe BeaverTails
+# test responses (Safe BT).
+run:
+  name: stream
+  phase: eval
+  seed: 0
+
+eval:
+  methods: []
+  datasets: [qwen3guardtest, singstreambench]
+  tokenizer_repo: Qwen/Qwen3-0.6B
+  max_len: 2048
+  batch_tokens: 32768
+  stream_target_fprs: [0.05, 0.01]
+  stream_calibration: [wildguard, aegis2]
+  stream_fpr_eval: [beavertails]

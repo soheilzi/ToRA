@@ -1,0 +1,6 @@
+# WildGuard suite (allenai/safety-eval harmbench/default.yaml): 239 HarmBench test behaviors (standard + copyright), all harmful.
+name: harmbench_prompt
+loader: harmbench_prompt
+repo_id: allenai/safety-eval
+revision: 060cc903d64703214c549b5c3a30ea8ceef2e588
+splits: {test: test}

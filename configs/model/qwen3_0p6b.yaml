@@ -1,0 +1,4 @@
+repo_id: Qwen/Qwen3-0.6B
+revision: null       # pin a commit hash before the paper runs
+dtype: bfloat16
+max_seq_len: 4096

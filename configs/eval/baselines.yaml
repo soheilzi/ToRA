@@ -1,0 +1,19 @@
+# The released baselines through our harness on every benchmark: Qwen3Guard-Stream-0.6B and SingProbe (its response
+# rule, and its query protocol for prompts, which reads the generator's answers written by python -m tora.eval.generate).
+#   CUDA_VISIBLE_DEVICES=0 python -m tora.eval.run_eval --config configs/eval/baselines.yaml
+run:
+  name: baselines
+  phase: eval
+  seed: 0
+
+eval:
+  methods: [qwen3guard_stream_0p6b, singprobe_qwen3_0p6b, singprobe_qwen3_0p6b_query]
+  datasets: [wildguard, aegis2, beavertails, saferlhf, harmbench_response, think, xstest_response, expguard, toxicchat,
+             openai_mod, aegis1, simplesafetytests, harmbench_prompt, xstest_prompt]
+  tokenizer_repo: Qwen/Qwen3-0.6B
+  max_len: 2048
+  batch_tokens: 32768
+  stream_target_fprs: [0.05, 0.01]
+  stream_calibration: []
+  stream_fpr_eval: []
+  generated: data_cache/generated/qwen3-0.6b_greedy_512

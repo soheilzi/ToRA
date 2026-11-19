@@ -1,0 +1,6 @@
+# Streaming benchmark: 813 unsafe responses with the token span of the first unsafe sentence.
+# (The thinking split is the separate `think` benchmark; thinking_loc is not used.)
+name: qwen3guardtest
+loader: qwen3guardtest
+repo_id: Qwen/Qwen3GuardTest
+splits: {response_loc: test}

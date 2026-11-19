@@ -1,0 +1,8 @@
+# ExpGuardMix (ExpGuard's safety-eval fork, expguardtest): finance / healthcare / law. Test: 2,275 prompt labels, 1,188
+# response labels (expert-verified). Train: the distributed ExpGuardTrain (46,005 rows; labels by an LLM ensemble).
+name: expguard
+loader: expguard
+repo_id: 6rightjade/expguardmix
+revision: 0f36262ac73a05d37f3e7226f7ab091cc89a7fe3
+splits: {train: train, test: test}
+val_fraction: 0.05              # held out from train by unique prompt, stratified by labels
